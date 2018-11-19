@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<select id="login" parameterType="Member" resultType="Member">
+		select * from board_member where id = #{id} and password = #{password}
+	</select>
+	<insert id="memberJoin" parameterType="Member">
+		insert into board_member values(#{id}, #{password})
+	</insert>
+	<select id="getByid" parameterType="String" resultType="Member">
+		select * from board_member where id = #{id}
+	</select>
+	<update id="memberupdate" parameterType="Member">
+		update board_member set password = #{password} where id = #{id}
+	</update>
+	<delete id="out" parameterType="String">
+		delete from board_member where id = #{id}
+	</delete>
+</mapper>

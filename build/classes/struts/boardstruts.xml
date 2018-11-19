@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="board" namespace="/board" extends="boardmain">
+		<action name="boardlist" class="board.board.BoardAction" method="boardlist">
+			<result>/board/boardlist.jsp</result>
+		</action>
+		<action name="boardRead" class="board.board.BoardAction" method="boardRead">
+			<result>/board/boardRead.jsp</result>
+		</action>
+		<!-- 리플저장 -->
+		<action name="replyInsert" class="board.board.BoardAction" method="replyInsert">
+			<result type="json"></result>
+		</action>
+		<action name="getReplyInBaord" class="board.board.BoardAction" method="getReplyInBaord">
+			<result type="json"></result>
+		</action>
+		<action name="deleteReplyInBaord" class="board.board.BoardAction" method="deleteReplyInBaord">
+			<result type="json"></result>
+		</action>
+		<action name="writerForm">
+			<result type="redirect">/board/boardWriteForm.jsp</result>
+		</action>
+		<action name="writeBoard" class="board.board.BoardAction" method="writeBoard">
+			<result type="json"></result>
+		</action>
+		<action name="boardDelete" class="board.board.BoardAction" method="boardDelete">
+			<result>/board/boardlist.jsp</result>
+		</action>
+		<action name="goBoardEditForm" class="board.board.BoardAction" method="goBoardEditForm">
+			<result>/board/boardEditForm.jsp</result>
+		</action>
+		<action name="editBaord" class="board.board.BoardAction" method="editBaord">
+			<result>/board/boardlist.jsp</result>
+		</action>
+	</package>
+</struts>

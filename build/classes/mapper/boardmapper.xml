@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	<select id="getBoardData" resultType="Board">
+		select * from strutsboard order by boardnum desc
+	</select>
+	<select id="getData" parameterType="int" resultType="Board">
+		select * from strutsboard where boardnum = #{boardnum}
+	</select>
+	<insert id="insertReply" parameterType="Reply">
+		<selectKey keyProperty="replynum" resultType="int" order="BEFORE" >
+			select strutsreply_seq.nextval from dual
+		</selectKey>
+		insert into strutsreply values (#{replynum}, #{boardnum}, #{id}, #{retext}, sysdate)
+	</insert>
+	<select id="getReplyInBaord" parameterType="int" resultType="Reply">
+		select * from strutsreply where boardnum = #{boardnum} order by replynum 
+	</select>
+	<delete id="deleteReplyInBaord" parameterType="int">
+		delete from strutsreply where replynum = #{replynum}
+	</delete>
+	<insert id="writeBoard" parameterType="hashmap">
+		insert into strutsboard (BOARDNUM, ID, INPUTDATE, VIEWCOUNT, TITLE, CONTENT)
+		values (strutsboard_seq.nextval, #{id}, sysdate, 0, #{title}, #{content})
+	</insert>
+	<delete id="boardDelete" parameterType="int">
+		delete from strutsboard where boardnum = #{boardnum}
+	</delete>
+	<update id="editBaord" parameterType="Board">
+		update strutsboard set INPUTDATE = sysdate, VIEWCOUNT = #{viewcount}, TITLE = #{title}, CONTENT = #{content}
+		where boardnum = #{boardnum}
+	</update>
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="boardmain" namespace="/" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult"/>
+		</result-types>
+		
+		<interceptors>
+			<interceptor name="InterceptorLogin" class="board.common.InterceptorLogin"/>
+			<interceptor-stack name="Interceptor">
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="InterceptorLogin"/>
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- <default-action-ref name="index"/> -->
+		
+		<global-results>
+			<result name="login">/member/login.jsp</result>
+			<result name="memberform">/member/memberform.jsp</result>
+		</global-results>
+		
+		<action name="index">
+			<result type="redirect">/index.jsp</result>
+		</action>
+		
+	</package>
+	<include file="struts/memberstruts.xml"></include>
+	<include file="struts/boardstruts.xml"></include>
+</struts>
